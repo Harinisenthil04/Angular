@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Shopping Cart</h2>
+  
+  <!-- 1. Dropdown Selection -->
+  <div class="form-group">
+    <label for="item-select">Choose an item: </label>
+    <select 
+      id="item-select" 
+      [value]="selectedItem()" 
+      (change)="selectedItem.set($any($event.target).value)">
+      @for (item of available; track item) {
+        <option [value]="item">{{ item }}</option>
+      }
+    </select>
+  </div>
+
+  <hr />
+
+  <!-- 2. Display and Counter Controls -->
+  <div class="counter-box">
+    <h3>Item: <span class="highlight">{{ selectedItem() }}</span></h3>
+    
+    <div class="controls">
+      <button (click)="decrement()" [disabled]="quantity() === 0">-</button>
+      <span class="quantity-display">Quantity: <strong>{{ quantity() }}</strong></span>
+      <button (click)="increment()">+</button>
+    </div>
+  </div>
+</div>
